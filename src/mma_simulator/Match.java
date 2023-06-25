@@ -1,4 +1,4 @@
-import org.jetbrains.annotations.NotNull;
+package mma_simulator;
 
 /**
  * Represents a match between two fighters.
@@ -11,7 +11,7 @@ public class Match {
     private Record record;
 
     /**
-     * Constructs a Match object with the provided fighters and a prefix for generating a unique match ID.
+     * Constructs a Match object with he provided fighters and a prefix for generating a unique match ID.
      *
      * @param fighter1 The first fighter.
      * @param fighter2 The second fighter.
@@ -104,6 +104,7 @@ public class Match {
 
         fighter1.addRecord(record); // Adds the record to the fighter's list of records
         fighter2.addRecord(record); // Adds the record to the fighter's list of records
+        record.winner().available();
     }
 
     /**
@@ -115,8 +116,16 @@ public class Match {
         return String.format("%S won, score[ %d : %d] ", record.winner().getName(), record.score()[0], record.score()[1]);
     }
 
+    /**
+     * Returns the winner fighter object.
+     *
+     * @return The match winner.
+     */
+    public Fighter getWinner(){
+        return record.winner();
+    }
     //private util methods
-    private void validateAvailability(@NotNull Fighter fighter) {
+    private void validateAvailability( Fighter fighter) {
         if (fighter.getStatus() != Fighter.Status.Available) {
             throw new IllegalArgumentException("The Fighter should be available"); // Throws an exception if the fighter is not available
         }
@@ -137,15 +146,15 @@ public class Match {
         return score;
     }
 
-    private double compareSkills(@NotNull Fighter fighter1, @NotNull Fighter fighter2) {
-        return Double.compare(fighter1.getSkill(), fighter2.getSkill());
+    private int compareSkills( Fighter fighter1, Fighter fighter2) {
+        return fighter1.getSkill()>fighter2.getSkill() ? 1:0;
     }
 
-    private double compareStrengths(@NotNull Fighter fighter1, @NotNull Fighter fighter2) {
-        return Double.compare(fighter1.getStrength(), fighter2.getStrength());
+    private int compareStrengths( Fighter fighter1,  Fighter fighter2) {
+        return fighter1.getStrength()>fighter2.getStrength() ? 1:0;
     }
 
-    private double compareSpeeds(@NotNull Fighter fighter1, @NotNull Fighter fighter2) {
-        return Double.compare(fighter1.getSpeed(), fighter2.getSpeed());
+    private int compareSpeeds( Fighter fighter1,  Fighter fighter2) {
+        return fighter1.getSpeed()>fighter2.getSpeed() ? 1:0;
     }
 }

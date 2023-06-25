@@ -1,3 +1,5 @@
+package mma_simulator;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,13 @@ public class Fighter {
 	private Status status;
 	private Map<String, Record> records;
 
-	{ status = Status.Available; }
+	private double balance;
+
+	{
+		status = Status.Available;
+		balance = 0;
+		records = new HashMap<String, Record>();
+	}
 
 	/**
 	 * Creates a fighter with the specified attributes and ID.
@@ -41,7 +49,6 @@ public class Fighter {
 		this.setAge(age);
 		this.setWeight(weight);
 		this.id = Integer.toString(id);
-		this.records = new HashMap<>();
 	}
 
 	/**
@@ -192,6 +199,7 @@ public class Fighter {
 		this.status = Status.InMatch;
 	}
 
+	public void available(){this.status = Status.Available;}
 	/**
 	 * Retrieves the status of the fighter.
 	 *
@@ -229,6 +237,23 @@ public class Fighter {
 		return records.get(matchId);
 	}
 
+	@Override
+	public String toString() {
+		return "Fighter{" +
+				"name='" + name + '\'' +
+				", id='" + id + '\'' +
+				", weightClass=" + weightClass +
+				", strength=" + strength +
+				", speed=" + speed +
+				", skill=" + skill +
+				", age=" + age +
+				", weight=" + weight +
+				", status=" + status +
+				", records=" + records +
+				", balance=" + balance +
+				'}';
+	}
+
 	// Private utility methods
 	private void setAge(int age) throws IllegalArgumentException {
 		validateAttributeRange(age);
@@ -254,5 +279,4 @@ public class Fighter {
 			throw new IllegalArgumentException("Invalid value for " + "age" + ". Value should be in range: " + 18 + " - " + 100);
 		}
 	}
-
 }
