@@ -2,7 +2,7 @@ package mma_simulator;
 
 import java.util.Scanner;
 
-public class MMA_Simulator {
+public class MmaSimulator {
     private static Tournament tournament;
 
     public static void main(String[] args) {
@@ -16,42 +16,25 @@ public class MMA_Simulator {
             String input = scanner.nextLine();
 
             switch (input) {
-                case "1":
-                    addFighter(scanner);
-                    break;
-                case "2":
-                    viewFighters();
-                    break;
-                case "3":
-                    searchFighter(scanner);
-                    break;
-                case "4":
-                    startTournament();
-                    break;
-                case "5":
-                    viewMatchDetails(scanner);
-                    break;
-                case "6":
-                    displayLeaderboard();
-                    break;
-                case "7":
-                    outputMatchResults();
-                    break;
-                case "8":
-                    displayHelp();
-                    break;
-                case "9":
+                case "1" -> addFighter(scanner);
+                case "2" -> viewFighters();
+                case "3" -> searchFighter(scanner);
+                case "4" -> startTournament();
+                case "5" -> viewMatchDetails(scanner);
+                case "0" -> {
                     running = false;
                     System.out.println("Exiting the program. Goodbye!");
-                    break;
-                default:
-                    System.out.println("Invalid input. Please try again.");
+                }
+                default -> System.out.println("Invalid input. Please try again.");
             }
         }
 
         scanner.close();
     }
 
+    /**
+     * Displays the main menu of the MMA simulator.
+     */
     private static void displayMainMenu() {
         System.out.println("===== MMA Tournament Simulator =====");
         System.out.println("1. Add Fighter");
@@ -59,14 +42,16 @@ public class MMA_Simulator {
         System.out.println("3. Search Fighters");
         System.out.println("4. Start Tournament");
         System.out.println("5. View Match Details");
-        System.out.println("6. Display Leaderboard");
-        System.out.println("7. Output Match Results");
-        System.out.println("8. Help");
-        System.out.println("9. Exit");
+        System.out.println("0. Exit");
         System.out.println("====================================");
         System.out.print("Enter your choice: ");
     }
 
+    /**
+     * Prompts the user to enter the details of a new fighter and adds them to the tournament.
+     *
+     * @param scanner the Scanner object used for user input
+     */
     private static void addFighter(Scanner scanner) {
         System.out.print("Enter fighter's name: ");
         String name = scanner.nextLine();
@@ -84,6 +69,9 @@ public class MMA_Simulator {
         tournament.addFighter(name, strength, speed, skill, age, weight);
     }
 
+    /**
+     * Displays the details of all the fighters in the tournament.
+     */
     private static void viewFighters() {
         Fighter[] fighters = tournament.getFighters();
         for (Fighter fighter : fighters) {
@@ -91,6 +79,11 @@ public class MMA_Simulator {
         }
     }
 
+    /**
+     * Searches for a fighter in the tournament based on the name or ID provided by the user.
+     *
+     * @param scanner the Scanner object used for user input
+     */
     private static void searchFighter(Scanner scanner) {
         System.out.print("Enter fighter's name or ID: ");
         String searchQuery = scanner.nextLine();
@@ -103,11 +96,19 @@ public class MMA_Simulator {
         }
     }
 
+    /**
+     * Starts the tournament and displays a message indicating that the tournament has started.
+     */
     private static void startTournament() {
         tournament.start();
         System.out.println("Tournament started!");
     }
 
+    /**
+     * Displays the details of a specific match in the tournament based on the match ID provided by the user.
+     *
+     * @param scanner the Scanner object used for user input
+     */
     private static void viewMatchDetails(Scanner scanner) {
         System.out.print("Enter match ID: ");
         String matchId = scanner.nextLine();
@@ -118,20 +119,5 @@ public class MMA_Simulator {
         } else {
             System.out.println("Match not found.");
         }
-    }
-
-    private static void displayLeaderboard() {
-        // Retrieve leaderboard data from tournament and display it in a tabular format
-        // Display fighter positions, names, wins, losses, etc.
-    }
-
-    private static void outputMatchResults() {
-        // Generate a report or file containing the results of all matches in the tournament
-        // Include winners, losers, and statistics
-        // Save the report to a specified file or display it on the console
-    }
-
-    private static void displayHelp() {
-        // Display help documentation explaining available commands, their usage, etc.
     }
 }

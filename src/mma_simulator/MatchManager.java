@@ -2,12 +2,14 @@ package mma_simulator;
 
 import java.util.HashMap;
 import java.util.Scanner;
+
 public class MatchManager {
     private final HashMap<String, Match> matches;
-    private final Node finalMatch;
+    private Node finalMatch;
     private int levels;
     private String tournamentPrefix;
     private final Scanner input;
+
     protected MatchManager(){
         this.matches = new HashMap<String, Match>();
         this.finalMatch = null;
@@ -15,15 +17,35 @@ public class MatchManager {
         input = new Scanner(System.in);
     }
 
+    /**
+     * Retrieves a specific match by its ID.
+     *
+     * @param matchId the ID of the match
+     * @return the match with the specified ID, or null if not found
+     */
     protected Match getMatch(String matchId){
         return matches.get(matchId);
     }
+
+    /**
+     * Retrieves the final match of the tournament.
+     *
+     * @return the final match
+     */
     protected Match getFinalMatch(){
         return finalMatch.match;
     }
+
+    /**
+     * Creates the tournament tree based on the number of fighters and the given prefix.
+     *
+     * @param fighterManager the FighterManager object containing the fighters
+     * @param prefix         the prefix to be used for generating match IDs
+     */
     protected void createTournamentTree(FighterManager fighterManager, String prefix){
         this.levels = (int) Math.ceil(Math.sqrt(fighterManager.getNumOfFighters()));
-
+        this.tournamentPrefix = prefix;
+        this.finalMatch = createLevel(levels, null, fighterManager);
     }
 
     private Node createLevel(int level, Node parentNode, FighterManager fighterManager){
@@ -40,6 +62,9 @@ public class MatchManager {
         return tempNode;
     }
 
+    /**
+     * Plays all the matches in the tournament tree.
+     */
     public void playMatches(){
         playLevel(this.finalMatch);
     }
@@ -59,6 +84,7 @@ public class MatchManager {
             playLevel(round.right);
         }
     }
+
     private static class Node {
         Match match;
         Node left;
@@ -73,11 +99,11 @@ public class MatchManager {
         }
 
         void addFighter(Fighter fighter){
-            if (this.parent==null){}
-            else if (this.parent.left == this){
+            if (this.parent == null){
+                // No parent node, do nothing
+            } else if (this.parent.left == this){
                 this.parent.match.setFighter1(fighter);
-            }
-            else {
+            } else {
                 this.parent.match.setFighter2(fighter);
             }
         }
