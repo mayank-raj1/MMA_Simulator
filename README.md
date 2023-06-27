@@ -52,7 +52,7 @@ The MMA Simulator is built using the following technologies:
    javac MMA_Simulator
    ```
 
-## 🔍 Usage
+##Usage
 
 1. Run the program:
    ```
