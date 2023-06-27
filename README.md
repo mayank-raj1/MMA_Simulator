@@ -2,19 +2,7 @@
 
 A Java program for simulating MMA tournaments.
 
-## Table of contents
-
-- [📊 Project Overview](#project-overview)
-- [🔥 Features and Highlights](#features-and-highlights)
-- [🚀 Technologies Used](#technologies-used)
-- [🔧 Installation](#installation)
-- [🔍 Usage](#usage)
-- [⚙️ Configuration](#configuration)
-- [🤝 Contributing](#contributing)
-- [📜 License](#license)
-- [📧 Contact Information](#contact-information)
-
-## 🔍 Project Overview
+## Project Overview
 
 The MMA Simulator is a Java-based program that simulates an MMA tournament. It allows users to add fighters, create a tournament tree, and simulate matches between the fighters. The program provides an interactive experience for MMA enthusiasts to explore different fight scenarios and determine the ultimate winner of the tournament.
 
@@ -26,7 +14,7 @@ The MMA Simulator is a Java-based program that simulates an MMA tournament. It a
 - View match details and results.
 - Award a prize to the winner of the tournament.
 
-## 🚀  Technologies Used
+## 🚀 Technologies Used
 
 The MMA Simulator is built using the following technologies:
 
@@ -52,7 +40,7 @@ The MMA Simulator is built using the following technologies:
    javac MMA_Simulator
    ```
 
-##Usage
+## 🔍 Usage
 
 1. Run the program:
    ```
@@ -81,7 +69,7 @@ To contribute to the project, follow these steps:
 
 5. Open a pull request to the main repository.
 
-## 📜 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
