@@ -69,10 +69,6 @@ To contribute to the project, follow these steps:
 
 5. Open a pull request to the main repository.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## 📧 Contact Information
 
 - Mayank Raj: mayraj035@gmail.com
