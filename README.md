@@ -62,10 +62,19 @@ To contribute to the project, follow these steps:
 1. Fork the repository.
 
 2. Create a new branch:
+   ```
+   git commit -m "Add your commit message"
+   ```
 
 3. Make your changes and commit them:
+   ```
+   git commit -m "Add your commit message"
+   ```
 
 4. Push your changes to the new branch:
+   ```
+   git push origin feature/your-feature
+   ```
 
 5. Open a pull request to the main repository.
 
