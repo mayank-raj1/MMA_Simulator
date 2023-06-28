@@ -43,8 +43,9 @@ public class MatchManager {
      * @param prefix         the prefix to be used for generating match IDs
      */
     protected void createTournamentTree(FighterManager fighterManager, String prefix){
-        this.levels = (int) Math.ceil(Math.sqrt(fighterManager.getNumOfFighters()));
+        this.levels = (int) Math.ceil(Math.log(fighterManager.getNumOfFighters()) / Math.log(2));
         this.tournamentPrefix = prefix;
+        fighterManager.makeFighterQueue();
         this.finalMatch = createLevel(levels, null, fighterManager);
     }
 
@@ -73,16 +74,16 @@ public class MatchManager {
         if (round == null) {
             return;
         }
-        if (round.left == null && round.right == null) {
-            round.match.fight();
-            System.out.println(round.match.getResults());
-            round.addFighter(round.match.getWinner());
-            System.out.println("Press Enter to continue...");
-            this.input.nextLine();
-        } else {
-            playLevel(round.left);
-            playLevel(round.right);
-        }
+
+        playLevel(round.left);
+        playLevel(round.right);
+
+        round.match.fight();
+        System.out.println(round.match.getResults());
+        round.addFighter(round.match.getWinner());
+        System.out.println("Press Enter to continue...");
+        this.input.nextLine();
+
     }
 
     private static class Node {

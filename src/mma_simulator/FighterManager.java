@@ -24,7 +24,6 @@ public class FighterManager {
      */
     protected void addFighter(Fighter fighter) {
         fighters.put(fighter.getId(), fighter);
-        fighterQueue.add(fighter);
     }
 
     /**
@@ -62,5 +61,11 @@ public class FighterManager {
      */
     protected int getNumOfFighters(){
         return this.fighters.size();
+    }
+
+    protected void makeFighterQueue(){
+        for (Fighter temp: this.getAllFighters()){
+            fighterQueue.add(temp);
+        }
     }
 }

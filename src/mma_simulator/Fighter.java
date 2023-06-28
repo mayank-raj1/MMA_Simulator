@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a fighter in a MMA simulator.
+ * Represents a fighter in an MMA simulator.
  */
 public class Fighter {
 	private static int baseFighterId = 1000;
@@ -21,7 +21,6 @@ public class Fighter {
 
 	private final String name;
 	private final String id;
-	private WeightClass weightClass;
 	private double strength;
 	private double speed;
 	private double skill;
@@ -56,6 +55,7 @@ public class Fighter {
 		this.setAge(age);
 		this.setWeight(weight);
 		this.id = Integer.toString(id);
+		baseFighterId = id + 1;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class Fighter {
 	 * @param weight   the weight of the fighter
 	 */
 	public Fighter(String name, double strength, double speed, double skill, int age, double weight) {
-		this(name, strength, speed, skill, age, weight, baseFighterId++);
+		this(name, strength, speed, skill, age, weight, baseFighterId);
 	}
 
 	/**
@@ -81,14 +81,6 @@ public class Fighter {
 		return this.name;
 	}
 
-	/**
-	 * Retrieves the weight class of the fighter.
-	 *
-	 * @return the weight class of the fighter
-	 */
-	public WeightClass getWeightClass() {
-		return this.weightClass;
-	}
 
 	/**
 	 * Retrieves the strength attribute of the fighter.
@@ -184,7 +176,6 @@ public class Fighter {
 	public void setWeight(double weight) throws IllegalArgumentException {
 		validateAttributeRange(weight, "weight", 40.0, 300.0);
 		this.weight = weight;
-		setWeightClass();
 	}
 
 	/**
@@ -268,7 +259,6 @@ public class Fighter {
 		return "Fighter{" +
 				"name='" + name + '\'' +
 				", id='" + id + '\'' +
-				", weightClass=" + weightClass +
 				", strength=" + strength +
 				", speed=" + speed +
 				", skill=" + skill +
@@ -285,15 +275,6 @@ public class Fighter {
 		this.age = age;
 	}
 
-	private void setWeightClass() {
-		if (this.weight < 70) {
-			this.weightClass = WeightClass.LightWeight;
-		} else if (this.weight < 84) {
-			this.weightClass = WeightClass.MiddleWeight;
-		} else {
-			this.weightClass = WeightClass.HeavyWeight;
-		}
-	}
 
 	private void validateAttributeRange(double value, String attributeName, double minValue, double maxValue) {
 		if (value < minValue || value > maxValue) {

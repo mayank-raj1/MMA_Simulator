@@ -74,5 +74,6 @@ public class Tournament {
 		matchManager.createTournamentTree(fighterManager, this.tournamentPrefix);
 		matchManager.playMatches();
 		matchManager.getFinalMatch().getWinner().addMoney(this.prize);
+		System.out.println(matchManager.getFinalMatch().getWinner().getName()+" Won the tournament!!");
 	}
 }

@@ -10,7 +10,10 @@ public class MmaSimulator {
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-
+        tournament.addFighter("Nm", 3.2, 4, 4, 40, 100);
+        tournament.addFighter("J", 6, 3, 9, 40, 100);
+        tournament.addFighter("km", 9, 4, 2, 40, 100);
+        tournament.addFighter("f", 7, 6, 4, 40, 100);
         while (running) {
             displayMainMenu();
             String input = scanner.nextLine();
@@ -100,8 +103,8 @@ public class MmaSimulator {
      * Starts the tournament and displays a message indicating that the tournament has started.
      */
     private static void startTournament() {
-        tournament.start();
         System.out.println("Tournament started!");
+        tournament.start();
     }
 
     /**
