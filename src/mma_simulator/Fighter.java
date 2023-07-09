@@ -17,7 +17,19 @@ public class Fighter {
 	/**
 	 * Enum representing fighter status.
 	 */
-	public enum Status {Available, InMatch}
+	public enum Status {Available, InMatch;
+	public String toString() {
+		switch (this){
+			case Available -> {
+				return "Available";
+			}
+			case InMatch -> {
+				return "InMatch";
+			}
+			default -> {return null;}
+		}
+	}
+	}
 
 	private final String name;
 	private final String id;
@@ -47,15 +59,15 @@ public class Fighter {
 	 * @param weight   the weight of the fighter
 	 * @param id       the ID of the fighter
 	 */
-	public Fighter(String name, double strength, double speed, double skill, int age, double weight, int id) {
+	public Fighter(String name, double strength, double speed, double skill, int age, double weight, String id) {
 		this.name = name;
 		this.setStrength(strength);
 		this.setSpeed(speed);
 		this.setSkill(skill);
 		this.setAge(age);
 		this.setWeight(weight);
-		this.id = Integer.toString(id);
-		baseFighterId = id + 1;
+		this.id = id;
+		baseFighterId = Integer.parseInt(id) + 1;
 	}
 
 	/**
@@ -69,7 +81,7 @@ public class Fighter {
 	 * @param weight   the weight of the fighter
 	 */
 	public Fighter(String name, double strength, double speed, double skill, int age, double weight) {
-		this(name, strength, speed, skill, age, weight, baseFighterId);
+		this(name, strength, speed, skill, age, weight, Integer.toString(baseFighterId));
 	}
 
 	/**
@@ -287,4 +299,5 @@ public class Fighter {
 			throw new IllegalArgumentException("Invalid value for age. Value should be in range: 18 - 100");
 		}
 	}
+
 }

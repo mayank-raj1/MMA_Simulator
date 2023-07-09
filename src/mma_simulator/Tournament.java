@@ -1,5 +1,7 @@
 package mma_simulator;
 
+import java.util.Map;
+
 public class Tournament {
 	private final MatchManager matchManager;
 	private final FighterManager fighterManager;
@@ -17,6 +19,7 @@ public class Tournament {
 		this.tournamentPrefix = tournamentPrefix;
 		this.fighterManager = new FighterManager();
 		this.matchManager = new MatchManager();
+		this.fighterManager.addAllFighters(DataBase.getAllFighters());
 	}
 
 	/**
@@ -55,6 +58,10 @@ public class Tournament {
 		} catch (Exception e) {
 			System.out.println("Fighter cannot be added\n" + e.getMessage());
 		}
+	}
+
+	public void addAllFighters(Map<String, Fighter> fighterMap){
+		this.fighterManager.addAllFighters(fighterMap);
 	}
 
 	/**
