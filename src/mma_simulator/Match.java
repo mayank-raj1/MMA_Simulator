@@ -117,6 +117,10 @@ public class Match {
         return String.format("%S won, score[ %d : %d] ", record.winner().getName(), record.score()[0], record.score()[1]);
     }
 
+    public Record getRecord() {
+        return record;
+    }
+
     /**
      * Retrieves the winner of the match.
      *

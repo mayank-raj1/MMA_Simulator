@@ -1,8 +1,6 @@
 package mma_simulator;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class FighterManager {
     private final HashMap<String, Fighter> fighters;
@@ -64,8 +62,13 @@ public class FighterManager {
     }
 
     protected void makeFighterQueue(){
-        for (Fighter temp: this.getAllFighters()){
-            fighterQueue.add(temp);
+        ArrayList<Fighter> tempArr = new ArrayList<Fighter>(fighters.values());
+        while (tempArr.size()!=0){
+            fighterQueue.add(tempArr.remove((int)Math.floor(Math.random()*tempArr.size())));
         }
+    }
+
+    protected void addAllFighters(Map<String, Fighter> fighterMap){
+        this.fighters.putAll(fighterMap);
     }
 }

@@ -6,14 +6,11 @@ public class MmaSimulator {
     private static Tournament tournament;
 
     public static void main(String[] args) {
+        DataBase.establishConnection();
         tournament = new Tournament(100000, "MMA Tournament"); // Initialize the tournament
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-        tournament.addFighter("Nm", 3.2, 4, 4, 40, 100);
-        tournament.addFighter("J", 6, 3, 9, 40, 100);
-        tournament.addFighter("km", 9, 4, 2, 40, 100);
-        tournament.addFighter("f", 7, 6, 4, 40, 100);
         while (running) {
             displayMainMenu();
             String input = scanner.nextLine();
